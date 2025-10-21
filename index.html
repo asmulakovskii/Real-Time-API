@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Stock Trading Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    
+    <!-- Moment.js for date formatting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    
+    <!-- Chart.js Adapter for Date Formatting -->
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment@1.0.1/dist/chartjs-adapter-moment.min.js"></script>
+    
+    <!-- Chart.js Annotations plugin for candlestick support -->
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-financial@0.1.1/dist/chartjs-chart-financial.min.js"></script>
+    
+    <!-- Chart.js Zoom plugin -->
+    <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/hammer.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@1.2.1/dist/chartjs-plugin-zoom.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Apple Inc. (AAPL) Real-Time Trading</h1>
+        <div class="controls">
+            <button id="start-simulation" class="control-btn">Start Simulation</button>
+            <button id="stop-simulation" class="control-btn">Stop Simulation</button>
+            <select id="speed-control" class="control-select">
+                <option value="0.5">0.5x Speed</option>
+                <option value="1.0" selected>1.0x Speed</option>
+                <option value="2.0">2.0x Speed</option>
+                <option value="5.0">5.0x Speed</option>
+            </select>
+        </div>
+        <div class="connection-status">
+            <span id="connection-indicator" class="disconnected"></span>
+            <span id="connection-text">Disconnected</span>
+        </div>
+    </header>
+
+    <main>
+        <section class="summary-container">
+            <div class="summary-card">
+                <h2>Last Price</h2>
+                <div id="last-price" class="big-number">--</div>
+            </div>
+            <div class="summary-card">
+                <h2>Opening Price</h2>
+                <div id="opening-price">--</div>
+            </div>
+            <div class="summary-card">
+                <h2>Day High</h2>
+                <div id="day-high">--</div>
+            </div>
+            <div class="summary-card">
+                <h2>Day Low</h2>
+                <div id="day-low">--</div>
+            </div>
+            <div class="summary-card">
+                <h2>Volume</h2>
+                <div id="total-volume">--</div>
+            </div>
+            <div class="summary-card">
+                <h2>Trades</h2>
+                <div id="trade-count">--</div>
+            </div>
+        </section>
+
+        <section class="charts-container">
+            <div class="chart-wrapper price-chart-wrapper">
+                <div class="chart-header">
+                    <h2>Price Chart</h2>
+                    <div class="chart-controls">
+                        <button id="candlestick-toggle" class="toggle-btn">Candlestick</button>
+                        <button id="line-toggle" class="toggle-btn active">Line</button>
+                        <button id="ma-toggle" class="toggle-btn active">Moving Averages</button>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="price-chart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-wrapper">
+                <div class="chart-header">
+                    <h2>Volume Chart</h2>
+                </div>
+                <div class="chart-container">
+                    <canvas id="volume-chart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-wrapper">
+                <div class="chart-header">
+                    <h2>MACD Indicator</h2>
+                </div>
+                <div class="chart-container">
+                    <canvas id="macd-chart"></canvas>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Real-Time Trading Dashboard | Last Update: <span id="last-update-time">--</span></p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
